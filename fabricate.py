@@ -57,11 +57,10 @@ if PY3:
     threading_condition = threading.Condition
 else:
     string_types = basestring
-
-try:
-    threading_condition = threading._Condition
-except ImportError:
-    threading_condition = threading.Condition
+    try:
+        threading_condition = threading._Condition
+    except ImportError:
+        threading_condition = threading.Condition
 
 # so you can do "from fabricate import *" to simplify your build script
 __all__ = ['setup', 'run', 'autoclean', 'main', 'shell', 'fabricate_version',
